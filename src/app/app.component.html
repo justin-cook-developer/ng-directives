@@ -1,16 +1,16 @@
 <div class="container">
   <nav>
     <ul class="pagination">
-      <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+      <li class="page-item" [appClass]="{ disabled: currentPage === 0 }">
         <a class="page-link" (click)="currentPage = currentPage - 1">
           Prev
         </a>
       </li>
 
-      <ng-container *ngFor="let image of images; let i = index">
+      <ng-container *appTimes="images.length; let i = index">
         <li
           class="page-item"
-          [ngClass]="{
+          [appClass]="{
             active: i === currentPage
           }"
           *ngIf="
@@ -26,7 +26,7 @@
 
       <li
         class="page-item"
-        [ngClass]="{ disabled: currentPage === images.length - 1 }"
+        [appClass]="{ disabled: currentPage === images.length - 1 }"
       >
         <a class="page-link" (click)="currentPage = currentPage + 1">
           Next
@@ -36,14 +36,16 @@
   </nav>
 
   <div>
-    <h4>{{ images[currentPage].title }}</h4>
+    <h4>
+      {{ images[currentPage].title }}
+    </h4>
     <img [src]="images[currentPage].url" [alt]="images[currentPage].title" />
   </div>
 </div>
 
-<div [ngSwitch]="currentPage">
+<!-- <div [ngSwitch]="currentPage">
   <div *ngSwitchCase="0">It's zero</div>
   <div *ngSwitchCase="1">It's one</div>
   <div *ngSwitchCase="2">It's two</div>
   <div *ngSwitchDefault>It's lit</div>
-</div>
+</div> -->
